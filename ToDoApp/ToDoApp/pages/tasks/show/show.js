@@ -13,7 +13,7 @@
     var localSettings = applicationData.localSettings;
 
     WinJS.UI.Pages.define("/pages/tasks/show/show.html", {
-            
+
         ready: function (element, options) {
             var appBar = document.getElementById("appbar").winControl;
             appBar.disabled = false;
@@ -24,10 +24,14 @@
             var localStorage = window.localStorage;
 
             var lView = element.querySelector("#tasks").winControl;
+            var snappedListView = element.querySelector("#tasksSnapped").winControl;
             lView.addEventListener("selectionchanged", this.selectionChanged);
+            snappedListView.addEventListener("selectionchanged", this.selectionChanged);
 
             var addButton = document.getElementById("add");
             var editButton = document.getElementById("edit");
+            var saveButton = document.getElementById("save");
+
             var uploadTasksButton = document.getElementById("sync");
             var downloadTasksButton = document.getElementById("download");
 
@@ -38,7 +42,7 @@
 
             var localTasks = JSON.parse(localStorage.getItem(DataPersister.userData.username));
             var taskData = [];
-            if (DataPersister.userData.username==="anonymous") {
+            if (DataPersister.userData.username === "anonymous") {
                 uploadTasksButton.disabled = true;
                 downloadTasksButton.disabled = true;
             }
@@ -54,6 +58,8 @@
                 DataPersister.userData.data = taskData;
                 var list = document.getElementById("tasks").winControl;
                 list.itemDataSource = new WinJS.Binding.List(DataPersister.userData.data).dataSource;
+                var snappedList = document.getElementById("tasksSnapped").winControl;
+                snappedList.itemDataSource = new WinJS.Binding.List(DataPersister.userData.data).dataSource;
             }
             else {
                 DataPersister.userData.data = null;
@@ -67,14 +73,20 @@
                 if (lView.selection._listView !== null) {
                     selectedTasks = lView.selection.getIndices();
                 }
+                else if (snappedListView.selection._listView !== null) {
+                    selectedTasks = snappedListView.selection.getIndices();
+                }
                 else {
                     return;
                 }
+
+
+
                 if (selectedTasks.length == 0) {
                     Message.Show("No task(s) selected");
                 }
 
-                if (selectedTasks!==null && selectedTasks.length>=0) {
+                if (selectedTasks !== null && selectedTasks.length >= 0) {
                     for (var i = selectedTasks.length - 1; i >= 0 ; i--) {
                         DataPersister.userData.data.splice(selectedTasks[i], 1);
                     }
@@ -89,18 +101,21 @@
             });
 
             editButton.addEventListener("click", function () {
-                if (lView.selection._listView!==null) {
+                if (lView.selection._listView !== null) {
                     selectedTasks = lView.selection.getIndices();
+                }
+                else if (snappedListView.selection._listView !== null) {
+                    selectedTasks = snappedListView.selection.getIndices();
                 }
                 else {
                     return;
                 }
-                
-                if (selectedTasks!==null && selectedTasks.length == 1) {
+
+                if (selectedTasks !== null && selectedTasks.length == 1) {
                     var taskToEdit = selectedTasks[0];
                     WinJS.Navigation.navigate("/pages/tasks/update/update.html", taskToEdit);
                 }
-                else if (selectedTasks === null ||selectedTasks.length==0 ) {
+                else if (selectedTasks === null || selectedTasks.length == 0) {
                     Message.Show("No task selected");
                 } else {
                     Message.Show("Please select only one task");
@@ -110,6 +125,9 @@
             finishButton.addEventListener("click", function () {
                 if (lView.selection._listView !== null) {
                     selectedTasks = lView.selection.getIndices();
+                }
+                else if (snappedListView.selection._listView !== null) {
+                    selectedTasks = snappedListView.selection.getIndices();
                 }
                 else {
                     return;
@@ -163,7 +181,7 @@
                         DataPersister.userData.sessionKey = response.sessionKey;
                         DataPersister.update();
                     }
-                   
+
                     WinJS.Navigation.navigate("pages/tasks/show/show.html");
 
                 }, function (error) {
@@ -202,6 +220,53 @@
                     progressBar.Hide();
                 });
             });
+
+            saveButton.addEventListener("click", function () {
+
+                // Create the picker object and set options
+                var savePicker = new Windows.Storage.Pickers.FileSavePicker();
+                savePicker.suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.documentsLibrary;
+                // Dropdown of file types the user can save the file as
+                savePicker.fileTypeChoices.insert("Plain Text", [".txt"]);
+                // Default file name if the user does not type one in or select a file to replace
+                savePicker.suggestedFileName = "New Document";
+
+                savePicker.pickSaveFileAsync().then(function (file) {
+                    if (file) {
+                        // Prevent updates to the remote version of the file until we finish making changes and call CompleteUpdatesAsync.
+
+                        var fileContent = "";
+                        for (var i = 0; i < DataPersister.userData.data.length; i++) {
+                            var title = DataPersister.userData.data[i].title;
+                            var content = DataPersister.userData.data[i].content;
+                            var endDate = DataPersister.userData.data[i].finishDate;
+                            fileContent += "--------------------" + "\r\n" + "Title: " + title + "\r\n" + "Content: " + content + "\r\n" + "End date: " + endDate + "\r\n" + "--------------------" + "\r\n" + "\r\n";
+                        }
+                        Windows.Storage.CachedFileManager.deferUpdates(file);
+                        // write to file
+                        Windows.Storage.FileIO.writeTextAsync(file, fileContent).done(function () {
+                            // Let Windows know that we're finished changing the file so the other app can update the remote version of the file.
+                            // Completing updates may require Windows to ask for user input.
+
+                            Windows.Storage.CachedFileManager.completeUpdatesAsync(file).done(function (updateStatus) {
+                                if (updateStatus === Windows.Storage.Provider.FileUpdateStatus.complete) {
+                                    WinJS.log && WinJS.log("File " + file.name + " was saved.", "sample", "status");
+                                } else {
+                                    WinJS.log && WinJS.log("File " + file.name + " couldn't be saved.", "sample", "status");
+                                }
+                            });
+                        });
+                    } else {
+                        WinJS.log && WinJS.log("Operation cancelled.", "sample", "status");
+                    }
+                });
+            });
         }
     });
 })();
+
+
+
+
+
+

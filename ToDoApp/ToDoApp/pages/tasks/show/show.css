@@ -83,16 +83,15 @@ body, html {
   opacity:1;
 }
     .win-listview {
-        width: 280px;
         margin-left: 20px;
     }
     .win-item {
-        width: 280px;
+        width: 260px;
     }
     .template {
         background-color: #24029c;
         display: inline-block;
-        width: 280px;
+        width: 260px;
         overflow-y: auto;
     }
     #tasks {
