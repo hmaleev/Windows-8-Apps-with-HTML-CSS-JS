@@ -5,48 +5,17 @@
 /// <reference path="../../../js/scripts/uiEditor.js" />
 /// <reference path="../../../js/scripts/dataPersister.js" />
 /// <reference path="../../../js/scripts/httpRequester.js" />
-// For an introduction to the Page Control template, see the following documentation:
-// http://go.microsoft.com/fwlink/?LinkId=232511
 (function () {
     "use strict";
-    var userIsLogin = false;
-    var applicationData = Windows.Storage.ApplicationData.current;
-
-    var localSettings = applicationData.localSettings;
     WinJS.UI.Pages.define("/pages/menu/login/login.html", {
-
-        init: function () {
-
-            if (localSettings.values["user"] != undefined && localSettings.values["user"] !== "") {
-                userIsLogin = true;
-                var progressbar = new UI.ProgressBar(document.body);
-                progressbar.Show();
-                Request.GetUserData(localSettings.values["user"]).then(function (request) {
-                    var response = JSON.parse(request.response);
-                   if (response != "" && response !== undefined) {
-                       DataPersister.userData.data = JSON.parse(response);
-                       DataPersister.update();
-                   }
-
-                   DataPersister.userData.remember = true;
-                   DataPersister.userData.sessionKey = localSettings.values["user"];
-                    WinJS.Navigation.navigate("pages/tasks/show/show.html");
-                    progressbar.Hide();
-                }, function () {
-                    progressbar.Hide();
-                });
-            }
-        },
-
         ready: function (element, options) {
-
             var appBar = document.getElementById("appbar").winControl
             appBar.disabled = true;
             var localStorage = window.localStorage;
             var userInput = document.getElementById("user");
             var passwordInput = document.getElementById("pass");
             var remmemberCheckBox = document.getElementById("remmember");
-
+            var gusetLoginButton = document.getElementById("login-guest-button");
             var loginButton = document.getElementById("login-button");
             var registerButton = document.getElementById("create-account-button");
             var recoveryButton = document.getElementById("password-recover-button");
@@ -61,11 +30,46 @@
                     DataPersister.userData.username = input.username;
                     DataPersister.userData.password = input.password;
                     DataPersister.userData.sessionKey = response.sessionKey;
-                
                     WinJS.Navigation.navigate("pages/tasks/show/show.html");
-
                 });
             }
+
+            gusetLoginButton.addEventListener("click", function () {
+                var loadingBar = new UI.ProgressBar(document.body);
+                loadingBar.Show();
+                Request.UserLogin("anonymous", "123456").then(function (request) {
+                    loadingBar.Hide();
+                    var response = JSON.parse(request.response);
+                    DataPersister.userData.username = "anonymous";
+                    DataPersister.userData.password = "123456";
+                    DataPersister.userData.sessionKey = response.sessionKey;
+                    DataPersister.userData.remember = remmemberCheckBox.checked;
+
+                    if (DataPersister.userData.remember == true) {
+                        var values = { username: "anonymous", password: "123456" };
+                        localStorage.setItem("remember", JSON.stringify(values));
+                    }
+                    WinJS.Navigation.navigate("pages/tasks/show/show.html");
+                }, function (error) {
+                    loadingBar.Hide();
+                    var respons;
+                    if (error.response != "") {
+                        respons = JSON.parse(error.response);
+                    }
+                    else {
+                        respons = "";
+                    }
+                    if (respons == Request.ErrorMessages.UserNotExist) {
+                        UI.ChageBorderColor([userInput, passwordInput], Const.InputWrongFieldColor);
+                        Message.Show(Request.ErrorMessages.UserNotExist);
+                    }
+                    else {
+                        var msgpopup = new Windows.UI.Popups.MessageDialog(Request.ErrorMessages.UnhandledError);
+                        msgpopup.commands.append(new Windows.UI.Popups.UICommand("Ok"));
+                        msgpopup.showAsync();
+                    }
+                });
+            });
 
             loginButton.addEventListener("click", function () {
                 var loadingBar = new UI.ProgressBar(document.body);
@@ -88,7 +92,6 @@
                         message += userCheck;
                         wrongInputs.push(userInput);
                     }
-
                     var checkPassword = Check.Password(password);
                     if (checkPassword != "") {
                         wrongInputs.push(passwordInput);
@@ -109,18 +112,10 @@
                     DataPersister.userData.password = password;
                     DataPersister.userData.sessionKey = response.sessionKey;
                     DataPersister.userData.remember = remmemberCheckBox.checked;
-                    //if (response.data != "" && response.data !== undefined) {
-                    //    DataPersister.userData.data = JSON.parse(response.data);
-                    //    DataPersister.update();
-                    //}
                     if (DataPersister.userData.remember==true) {
                         var values={username:username, password:password};
                         localStorage.setItem("remember", JSON.stringify(values));
                         }
-                //    else {
-                    //    localStorage.setItem("password", JSON.stringify(values));
-                    //}
-
 
                     WinJS.Navigation.navigate("pages/tasks/show/show.html");
 
@@ -133,7 +128,6 @@
                     else {
                         respons = "";
                     }
-
                     if (respons == Request.ErrorMessages.UserNotExist) {
                         UI.ChageBorderColor([userInput, passwordInput], Const.InputWrongFieldColor);
                         Message.Show(Request.ErrorMessages.UserNotExist);

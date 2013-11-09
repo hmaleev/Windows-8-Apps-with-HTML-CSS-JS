@@ -38,6 +38,14 @@
 
             var localTasks = JSON.parse(localStorage.getItem(DataPersister.userData.username));
             var taskData = [];
+            if (DataPersister.userData.username==="anonymous") {
+                uploadTasksButton.disabled = true;
+                downloadTasksButton.disabled = true;
+            }
+            else {
+                uploadTasksButton.disabled = false;
+                downloadTasksButton.disabled = false;
+            }
 
             if (localTasks !== null) {
                 for (var i = 0; i < localTasks.length; i++) {
@@ -54,20 +62,6 @@
             addButton.addEventListener("click", function () {
                 WinJS.Navigation.navigate("pages/tasks/create/create.html");
             });
-
-            //tasksList.addEventListener("contextmenu", function () {
-            //    var triger = this.winControl;
-            //    selectedTasks = new Array();
-            //    triger.selection.getItems().then(function (items) {
-            //        if (items.length>0) {
-            //            for (var i in items) {
-            //                selectedTasks.push(items[i].index);
-            //            }
-            //        }
-                   
-            //    });
-            //});
-
 
             deleteButton.addEventListener("click", function () {
                 if (lView.selection._listView !== null) {

@@ -2,7 +2,7 @@
     margin-left: 120px;
     margin-right: 120px;
 }
-#login-button,#create-account-button,#password-recover-button {
+#login-button,#create-account-button,#password-recover-button,#login-guest-button {
    width:100%;
    font-size:1em;
 }

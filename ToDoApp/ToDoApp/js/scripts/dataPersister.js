@@ -58,6 +58,7 @@
 
             list.push(getObservableTask(title, content, finishDate, status));
         }
+        
         if (userData.data.length>0) {
             localStorage.setItem(userData.username, JSON.stringify(list));
         }
