@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ToDoApp</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <script src="js/scripts/dataPersister.js"></script>
+    <script src="js/scripts/uiEditor.js"></script>
+    <script src="js/scripts/const.js"></script>
+    <script src="js/scripts/messages.js"></script>
+    <script src="js/scripts/popUpMessage.js"></script>
+    <script src="js/scripts/dataCheck.js"></script>
+    <script src="js/scripts/httpRequester.js"></script>
+
+    <!-- ToDoApp references -->
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="/js/default.js"></script>
+    <script src="js/navigator.js"></script>
+</head>
+<body>
+    <div id="contenthost" data-win-control="Application.PageControlNavigator" data-win-options="{home: '/pages/menu/login/login.html'}"></div>
+    <!--<div id="contenthost" data-win-control="Application.PageControlNavigator" data-win-options="{home: '/pages/tasks/show/show.html'}"></div>-->
+
+    <div id="appbar" data-win-control="WinJS.UI.AppBar">
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'logout', label:'Logout', icon:'back'}" type="button" style="float: left"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'add', label:'Add new task', icon:'add'}" type="button"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'edit', label:'Edit task', icon:'edit'}" type="button"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'finish', label:'Finish selected tasks', icon:'placeholder'}" type="button"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'delete', label:'Delete selected tasks', icon:'delete'}" type="button"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'sync', label:'Upload to server', icon:'upload'}" type="button"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'download', label:'Download from  server', icon:'download'}" type="button"></button>
+
+    </div>
+    <div data-win-control="WinJS.UI.SettingsFlyout"></div>
+
+</body>
+</html>
+
+
+
+
+

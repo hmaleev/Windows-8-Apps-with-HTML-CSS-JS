@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>recovery</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <script src="../../../js/scripts/uiEditor.js"></script>
+    <script src="../../../js/scripts/const.js"></script>
+    <script src="../../../js/scripts/dataCheck.js"></script>
+    <script src="../../../js/scripts/popUpMessage.js"></script>
+    <script src="../../../js/scripts/httpRequester.js"></script>
+    <script src="../../../js/scripts/messages.js"></script>
+
+    <link href="recovery.css" rel="stylesheet" />
+    <script src="recovery.js"></script>
+</head>
+<body>
+    <div class="recovery fragment">
+        <header aria-label="Header content" role="banner">
+            <button class="win-backbutton" aria-label="Back" disabled type="button"></button>
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle">Password Recovery</span>
+            </h1>
+        </header>
+        <section aria-label="Main content" role="main">
+            <table id="password-recovery" class="form" border="0">
+                <tr>
+                    <td>Username:</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="user"  /></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="email" id="email" /></td>
+                </tr>
+                <tr>
+                    <td>New Password:</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="password" id="pass" /></td>
+                </tr>
+                <tr>
+                    <td>New Password confirm:</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="password" id="confirmPass"  /></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button id="password-recovery-button">Recover Password</button></td>
+                </tr>
+            </table>
+        </section>
+    </div>
+</body></html>

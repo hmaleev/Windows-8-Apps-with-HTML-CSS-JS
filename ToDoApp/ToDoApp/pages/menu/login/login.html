@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>login</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+    <script src="../../../js/scripts/uiEditor.js"></script>
+    <script src="../../../js/scripts/dataCheck.js"></script>
+    <script src="../../../js/scripts/popUpMessage.js"></script>
+    <script src="../../../js/scripts/cryptojs-sha1.js"></script>
+    <script src="../../../js/scripts/httpRequester.js"></script>
+    <script src="../../../js/scripts/dataPersister.js"></script>
+
+    <link href="login.css" rel="stylesheet" />
+    <script src="login.js"></script>
+</head>
+<body>
+    <div class="fragment homepage">
+        <header aria-label="Header content" role="banner">
+<!--            <button class="win-backbutton" aria-label="Back" disabled type="button"></button>-->
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle">Login</span>
+            </h1>
+        </header>
+        <section aria-label="Main content" role="main">
+            <table id="login" class="form" border="0">
+                <tr>
+                    <td colspan="2">Username:</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="text" id="user" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">Password:</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="password" id="pass" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="checkbox" id="remmember" />remmember me</td>
+                </tr>
+                <tr>
+                    <td colspan="2" >
+                        <button id="login-button">Login</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button id="create-account-button">Create Account</button></td>
+                    <td>
+                        <button id="password-recover-button">Password recover</button></td>
+                </tr>
+            </table>
+        </section>
+    </div>
+</body>
+</html>
