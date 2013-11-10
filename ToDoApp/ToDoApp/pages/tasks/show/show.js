@@ -16,7 +16,19 @@
 
         ready: function (element, options) {
             var appBar = document.getElementById("appbar").winControl;
+           
             appBar.disabled = false;
+            window.addEventListener("resize", function () {
+                var viewStates = Windows.UI.ViewManagement.ApplicationViewState;
+                var ViewState = Windows.UI.ViewManagement.ApplicationView.value;
+                if (ViewState === viewStates.snapped) {
+                    appBar.disabled = true;
+                } else {
+                    appBar.disabled = false;
+                }
+            });
+
+           
 
             if (DataPersister.userData.data == undefined || DataPersister.userData.data == '') {
                 appBar.show();
@@ -79,9 +91,6 @@
                 else {
                     return;
                 }
-
-
-
                 if (selectedTasks.length == 0) {
                     Message.Show("No task(s) selected");
                 }
