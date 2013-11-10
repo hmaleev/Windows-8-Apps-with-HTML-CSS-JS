@@ -16,27 +16,26 @@
 
             var titleInput = document.getElementById("title");
             var contentInput = document.getElementById("content");
-
-            var finishDateInput = document.getElementById("finishDate");
-            var finishTimeInput = document.getElementById("finishHour");
-
-            var finishDateControl = finishDateInput.winControl;
-            var finishTimeControl = finishTimeInput.winControl;
-
             var createTaskButton = document.getElementById("create-task-button");
             var backButton = document.getElementById("back-button");
 
+            var finishDateControl = document.getElementById("finishDate").winControl;
+            var finishTimeControl = document.getElementById("finishHour").winControl;
+            finishTimeControl.clock = "24HourClock";
+
+
+
             createTaskButton.addEventListener("click", function () {
-
                 UI.ChageBorderColor([titleInput, contentInput], Const.InputDefaultFieldColor);
-
                 var progressBar = new UI.ProgressBar(document.body);
                 progressBar.Show();
 
+                var currentDate = finishDateControl.current.toDateString();
+                var currentTime = finishTimeControl.current.toLocaleTimeString();
+
                 var title = titleInput.value;
                 var content = contentInput.value;
-                var finishDate = finishDateControl.current;
-                var finishTime = finishTimeControl.current;
+                var endDate = currentDate + " " + currentTime;
                 var message = "";
                 var wrongInputs = new Array();
 
@@ -53,19 +52,11 @@
                     return;
                 }
 
-                DataPersister.createNewTask(title, content, finishDate);
+                DataPersister.createNewTask(title, content, endDate);
                 DataPersister.update();
                 progressBar.Hide();
-                
                 titleInput.value = "";
                 contentInput.value = "";
-
-                var currentDate = new Date().toDateString();
-                var currentTime = new Date().toLocaleTimeString();
-
-                finishDateControl.current = currentDate;
-                finishTimeControl.current = currentTime;
-
                 YeahToast.show({ title: "Task Created" });
             });
 

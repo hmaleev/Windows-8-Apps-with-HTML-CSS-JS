@@ -5,11 +5,11 @@
 (function () {
 
     var createDateTime = function (date, time) {
-        var newDateTime = date;
-        newDateTime.setHours(time.getHours());
-        newDateTime.setMinutes(time.getMinutes());
+        //var newDateTime = date;
+        //newDateTime.setHours(time.getHours());
+        //newDateTime.setMinutes(time.getMinutes());
 
-        return newDateTime;
+        return date +" " +time;
     }
 
     var checkUsername = function (username) {

@@ -3,30 +3,23 @@
 /// <reference path="../../../js/scripts/dataPersister.js" />
 /// <reference path="../../../js/YeahToast.js" />
 /// <reference path="../../../js/scripts/popUpMessage.js" />
-// For an introduction to the Page Control template, see the following documentation:
-// http://go.microsoft.com/fwlink/?LinkId=232511
 (function () {
     "use strict";
 
     WinJS.UI.Pages.define("/pages/tasks/update/update.html", {
-
         ready: function (element, options) {
             var data = DataPersister.userData.data[options];
-
             var appBar = document.getElementById("appbar").winControl
             appBar.disabled = true;
 
             var titleInput = document.getElementById("title");
             var contentInput = document.getElementById("content");
+            var finishDateControl = document.getElementById("finishDate").winControl;
+            var finishTimeControl = document.getElementById("finishHour").winControl;
 
-            var finishDateInput = document.getElementById("finishDate");
-            var finishTimeInput = document.getElementById("finishHour");
-
-            var finishDateControl = finishDateInput.winControl;
-            var finishTimeControl = finishTimeInput.winControl;
+            finishTimeControl.clock = "24HourClock";
 
             var backButton = document.getElementById("back-button");
-
             titleInput.value = data.title;
             contentInput.value = data.content;
 
@@ -42,8 +35,8 @@
 
                 var title = titleInput.value;
                 var content = contentInput.value;
-                var finishDate = finishDateControl.current;
-                var finishTime = finishTimeControl.current;
+                var finishDate = finishDateControl.current.toDateString();
+                var finishTime = finishTimeControl.current.toLocaleTimeString();
                 var message = "";
                 var wrongInputs = new Array();
 

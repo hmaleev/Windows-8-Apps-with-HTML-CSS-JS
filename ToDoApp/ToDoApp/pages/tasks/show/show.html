@@ -27,12 +27,12 @@
         </header>
         <div id="task-template-container" data-win-control="WinJS.Binding.Template">
             <div class="template">
+
                 <img data-win-bind="src: status" />
-                <div class="txt">
-                    <h2 data-win-bind="innerText: title"></h2>
-                    <span id="content" data-win-bind="innerText: content"></span>
-                    <span id="finishDate" data-win-bind="innerText: finishDate"></span>
-                </div>
+                <h2 data-win-bind="innerText: title"></h2>
+                <div id="content" data-win-bind="innerText: content"></div>
+                <span class="text">End Date: </span>
+                <span id="finishDate" data-win-bind="innerText: finishDate"></span>
             </div>
 
         </div>
