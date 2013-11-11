@@ -4,8 +4,6 @@
 /// <reference path="../../../js/scripts/httpRequester.js" />
 /// <reference path="//Microsoft.WinJS.1.0/js/ui.js" />
 /// <reference path="//Microsoft.WinJS.1.0/js/base.js" />
-// For an introduction to the Page Control template, see the following documentation:
-// http://go.microsoft.com/fwlink/?LinkId=232511
 (function () {
     "use strict";
 
@@ -28,8 +26,6 @@
                 }
             });
 
-           
-
             if (DataPersister.userData.data == undefined || DataPersister.userData.data == '') {
                 appBar.show();
             }
@@ -43,15 +39,13 @@
             var addButton = document.getElementById("add");
             var editButton = document.getElementById("edit");
             var saveButton = document.getElementById("save");
-
             var uploadTasksButton = document.getElementById("sync");
             var downloadTasksButton = document.getElementById("download");
-
             var deleteButton = document.getElementById("delete").winControl;
             var finishButton = document.getElementById("finish").winControl;
             var logoutButton = document.getElementById("logout").winControl;
-            var selectedTasks = null;
 
+            var selectedTasks = null;
             var localTasks = JSON.parse(localStorage.getItem(DataPersister.userData.username));
             var taskData = [];
             if (DataPersister.userData.username === "anonymous") {
@@ -232,30 +226,31 @@
 
             saveButton.addEventListener("click", function () {
 
-                // Create the picker object and set options
                 var savePicker = new Windows.Storage.Pickers.FileSavePicker();
                 savePicker.suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.documentsLibrary;
-                // Dropdown of file types the user can save the file as
                 savePicker.fileTypeChoices.insert("Plain Text", [".txt"]);
-                // Default file name if the user does not type one in or select a file to replace
                 savePicker.suggestedFileName = "New Document";
 
                 savePicker.pickSaveFileAsync().then(function (file) {
                     if (file) {
-                        // Prevent updates to the remote version of the file until we finish making changes and call CompleteUpdatesAsync.
 
                         var fileContent = "";
                         for (var i = 0; i < DataPersister.userData.data.length; i++) {
                             var title = DataPersister.userData.data[i].title;
                             var content = DataPersister.userData.data[i].content;
                             var endDate = DataPersister.userData.data[i].finishDate;
-                            fileContent += "--------------------" + "\r\n" + "Title: " + title + "\r\n" + "Content: " + content + "\r\n" + "End date: " + endDate + "\r\n" + "--------------------" + "\r\n" + "\r\n";
+                            var status = DataPersister.userData.data[i].status;
+                            if (status==="images/done.png") {
+                                status = "Done";
+                            }
+                            else {
+                                status = "Unfinished";
+                            }
+                            fileContent += "--------------------" + "\r\n" + "Title: " + title + "\r\n" + "Content: " + content + "\r\n" + "End date: " + endDate + "\r\n" +"Status: " + status+ "\r\n"+  "--------------------" + "\r\n" + "\r\n";
                         }
+                        // Prevent updates to the remote version of the file until we finish making changes and call CompleteUpdatesAsync.
                         Windows.Storage.CachedFileManager.deferUpdates(file);
-                        // write to file
                         Windows.Storage.FileIO.writeTextAsync(file, fileContent).done(function () {
-                            // Let Windows know that we're finished changing the file so the other app can update the remote version of the file.
-                            // Completing updates may require Windows to ask for user input.
 
                             Windows.Storage.CachedFileManager.completeUpdatesAsync(file).done(function (updateStatus) {
                                 if (updateStatus === Windows.Storage.Provider.FileUpdateStatus.complete) {
@@ -273,9 +268,3 @@
         }
     });
 })();
-
-
-
-
-
-

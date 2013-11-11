@@ -64,10 +64,11 @@ body, html {
 
 
     .template img {
+        margin-top:10px;
         float: left;
         display: inline-block;
         width: 100px;
-        height: 100px;
+        height: 203px;
     }
 
     .template h2 {
