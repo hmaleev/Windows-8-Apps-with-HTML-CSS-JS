@@ -15,7 +15,7 @@
             appBar.disabled = true;
 
             var titleInput = document.getElementById("title");
-            var contentInput = document.getElementById("content");
+            var contentInput = document.getElementById("taskContent");
             var createTaskButton = document.getElementById("create-task-button");
             var backButton = document.getElementById("back-button");
 

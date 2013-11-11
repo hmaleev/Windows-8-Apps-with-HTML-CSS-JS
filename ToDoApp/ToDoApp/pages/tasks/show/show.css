@@ -79,23 +79,23 @@ body, html {
         font-weight: bold;
         text-align: center;
         padding-right: 20px;
-        max-height:120px;
+        max-height:100px;
         max-width:290px;
     }
 
     .template #content {
-        margin-top:10px;
-        max-height:100px;
-        max-width:390px;
         overflow-y: auto;
         font-size: 18px;
         word-wrap: break-word;
         text-align: center;
-        padding-right:20px;
-      
+        padding-right: 20px;
+        max-height:100px;
+        max-width:290px;
     }
+      
+    
     .template #finishDate {
-        padding-top:15px;
+        padding-top:10px;
         position:absolute;
         font-size: 18px;
         bottom:10px;
