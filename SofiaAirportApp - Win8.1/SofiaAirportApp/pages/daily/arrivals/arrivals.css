@@ -1,0 +1,403 @@
+﻿.arrivals section[role=main] {
+    margin-left: 120px;
+    margin-right: 120px;
+}
+
+#txt {
+    display: none;
+}
+
+body {
+    height: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    font-size: 1.2em;
+}
+
+td, th {
+    margin-left: 12px;
+    padding-left: 12px;
+    margin-right: 12px;
+    padding-right: 12px;
+}
+
+    td:nth-child(4), td:nth-child(10) {
+        display: none;
+    }
+
+a, a:link, a:visited, a:hover, a:focus, a:active {
+    color: #fff;
+}
+
+#appbar, button {
+    background-color: #0093DD;
+    color: #ffffff;
+}
+
+.win-commandicon, .win-commandimage {
+    color: #fff;
+    border-color: #fff;
+}
+
+
+@media (min-width: 500px) and (max-width: 600px) {
+    .arrivals section[role=main] {
+        margin-left: 20px;
+        margin-right: 10px;
+    }
+
+
+    #txt {
+        display: none;
+    }
+
+    body {
+        height: 100%;
+    }
+
+    table {
+        font-size: 0.9em;
+        width: 450px;
+        table-layout: fixed;
+    }
+
+    td:nth-child(1), th:nth-child(1), td:nth-child(2), th:nth-child(2) {
+        display: none;
+    }
+
+    td:nth-child(9), th:nth-child(8) {
+        display: none;
+    }
+    
+    td:nth-child(8), th:nth-child(7) {
+        width:65px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+    
+    td:nth-child(7), th:nth-child(6) {
+        width:65px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+    
+    td:nth-child(6), th:nth-child(5) {
+        width: 40px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+
+    td:nth-child(5), th:nth-child(4) {
+        width: 100px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+     td:nth-child(3), th:nth-child(3) {
+        width: 80px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+
+
+    a, a:link, a:visited, a:hover, a:focus, a:active {
+        color: #fff;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 700px) {
+    .arrivals section[role=main] {
+        margin-left: 20px;
+        margin-right: 10px;
+    }
+
+
+    #txt {
+        display: none;
+    }
+
+    body {
+        height: 100%;
+    }
+
+    table {
+        font-size: 1.1em;
+        width: 580px;
+        table-layout: fixed;
+    }
+
+    td:nth-child(1), th:nth-child(1), td:nth-child(2) {
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+
+    td:nth-child(9), th:nth-child(8) {
+        display: none;
+    }
+
+    td:nth-child(8), th:nth-child(7) {
+        width: 65px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+
+    td:nth-child(7), th:nth-child(6) {
+        width: 65px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+
+    td:nth-child(6), th:nth-child(5) {
+        width: 40px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+
+    td:nth-child(5), th:nth-child(4) {
+        width: 100px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+
+    a, a:link, a:visited, a:hover, a:focus, a:active {
+        color: #fff;
+    }
+}
+
+@media (min-width: 701px) and (max-width: 850px) {
+    .arrivals section[role=main] {
+        margin-left: 20px;
+        margin-right: 10px;
+    }
+
+
+    #txt {
+        display: none;
+    }
+
+    body {
+        height: 100%;
+    }
+
+    table {
+        font-size: 1.4em;
+        width: 695px;
+        table-layout: fixed;
+    }
+    th{
+         font-size: 1.3em;
+    }
+
+    td:nth-child(1), th:nth-child(1), td:nth-child(2) {
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+
+    td:nth-child(9), th:nth-child(8) {
+        display: none;
+    }
+
+    td:nth-child(8), th:nth-child(7) {
+        width: 90px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+
+    td:nth-child(7), th:nth-child(6) {
+        width: 75px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+
+    td:nth-child(6), th:nth-child(5) {
+        width: 50px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+
+    td:nth-child(5), th:nth-child(4) {
+        width: 120px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+
+    a, a:link, a:visited, a:hover, a:focus, a:active {
+        color: #fff;
+    }
+}
+
+@media (min-width: 851px) and (max-width: 1000px) {
+    .arrivals section[role=main] {
+        margin-left: 20px;
+        margin-right: 10px;
+    }
+
+
+    #txt {
+        display: none;
+    }
+
+    body {
+        height: 100%;
+    }
+
+    table {
+        font-size: 1.23em;
+        width: 840px;
+        table-layout: fixed;
+    }
+
+    td:nth-child(1), th:nth-child(1), td:nth-child(2), th:nth-child(2) {
+     
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+
+    td:nth-child(9), th:nth-child(8) {
+        width: 165px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+
+    td:nth-child(8), th:nth-child(7) {
+        width: 85px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+
+    td:nth-child(7), th:nth-child(6) {
+        width: 85px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+
+    td:nth-child(6), th:nth-child(5) {
+        width: 65px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+
+    td:nth-child(5), th:nth-child(4) {
+        width: 120px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+
+    a, a:link, a:visited, a:hover, a:focus, a:active {
+        color: #fff;
+    }
+}
+
+@media  (min-width: 1400px) and (max-width: 1920px){
+    .arrivals section[role=main] {
+        margin-left: 20px;
+        margin-right: 10px;
+    }
+
+    #txt {
+        display: none;
+    }
+
+    body {
+        height: 100%;
+    }
+
+    table {
+        font-size: 1.9em;
+        table-layout: fixed;
+    }
+    th{
+        font-size:1.4em;
+    }
+
+}
+
+
+@media  (min-width: 1921px) and (max-width: 2560px){
+    .arrivals section[role=main] {
+        margin-left: 20px;
+        margin-right: 10px;
+    }
+
+    #txt {
+        display: none;
+    }
+
+    body {
+        height: 100%;
+    }
+
+    table {
+        font-size: 2.3em;
+        table-layout: fixed;
+    }
+    th{
+        font-size:1.8em;
+    }
+
+}
+
+
+
+/*@media screen and (-ms-view-state: fullscreen-portrait) {
+    .arrivals section[role=main] {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+
+    a, a:link, a:visited, a:hover, a:focus, a:active {
+        color: #fff;
+    }
+
+    #txt {
+        display: none;
+    }
+
+    body {
+        height: 100%;
+    }
+
+    table {
+        font-size: 0.9em;
+        width: 88%;
+        table-layout: fixed;
+    }
+
+    td:nth-child(4), th:nth-child(4), td:nth-child(5), th:nth-child(5) {
+        width: 70px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+
+    td:nth-child(8), th:nth-child(8) {
+        width: 95px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+}*/
+
+
+
+/*td:nth-child(1), th:nth-child(1), td:nth-child(2), th:nth-child(2) {
+        display: none;
+    }
+
+    td:nth-child(3), th:nth-child(3), td:nth-child(8), th:nth-child(8) {
+        display: none;
+    }
+
+    td:nth-child(4), th:nth-child(4) {
+         display: none;
+        width: 70px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }
+
+
+    td:nth-child(5), th:nth-child(5), td:nth-child(6), th:nth-child(6) {
+         display: none;
+        width: 40px;
+        word-break: inherit;
+        word-wrap: break-word;
+    }*/

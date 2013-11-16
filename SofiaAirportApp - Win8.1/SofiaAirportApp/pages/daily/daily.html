@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>daily</title>
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.2.0/css/ui-light.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
+
+    <link href="daily.css" rel="stylesheet" />
+    <script src="daily.js"></script>
+</head>
+<body>
+    <div class="daily fragment">
+        <header aria-label="Header content" role="banner">
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle">Дневно разписание на полетите</span>
+            </h1>
+        </header>
+        <section aria-label="Main content" role="main">
+           <div class="tile" onclick="GoToArrivals(event)">
+                <div class="image"></div>
+                <h1><a href="#" id="arrivals">Кацащи</a></h1>
+            </div>
+            <div class="tile" onclick="GoToDepartures(event)">
+                <div class="image2"></div>
+                <h1><a href="#" id="departures">Излитащи</a></h1>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
+  <Identity Name="24234hmaleev.-" Version="1.2.0.2" Publisher="CN=4A66E1DD-C7BE-410B-9E1E-DF9D303F9993" />
+  <Properties>
+    <DisplayName>летище София - разписание</DisplayName>
+    <PublisherDisplayName>hmaleev</PublisherDisplayName>
+    <Logo>images\airportStoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.3.0</OSMinVersion>
+    <OSMaxVersionTested>6.3.0</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" StartPage="default.html">
+      <m2:VisualElements DisplayName="летище София - разписание" Description="Разписание на полетите на летище София." BackgroundColor="#200C69" ForegroundText="light" ToastCapable="false" Square150x150Logo="images/airportLogo.png" Square30x30Logo="images/airportSmallLogo.png">
+        <m2:DefaultTile ShortName="летище София" Wide310x150Logo="images/airportWideLogo.png">
+          <m2:ShowNameOnTiles>
+            <m2:ShowOn Tile="square150x150Logo" />
+            <m2:ShowOn Tile="wide310x150Logo" />
+          </m2:ShowNameOnTiles>
+        </m2:DefaultTile>
+        <m2:SplashScreen Image="images\airportSplashScreen.png" />
+      </m2:VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>
