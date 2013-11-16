@@ -1,0 +1,124 @@
+﻿.daily section[role=main] {
+    margin-left: 120px;
+    margin-right: 120px;
+}
+
+.tile {
+    background-color: #fff;
+    display: inline-block;
+    width: 40%;
+    height: 80%;
+    margin: 15px;
+}
+
+    .tile > .image {
+        display: block;
+        height: 64%;
+        background-size: cover;
+        background-image: url(../../images/drawing.svg);
+    }
+
+    .tile > .image2 {
+        display: block;
+        height: 64%;
+        background-size: cover;
+        background-image: url(../../images/drawing2.svg);
+    }
+
+    .tile h1 {
+        font-size: 8em;
+        text-align: center;
+        background-color: #0093DD;
+        height: 30%;
+    }
+
+        .tile h1 a {
+            color: #fff;
+        }
+
+#appbar, button {
+    background-color: #0093DD;
+    color: #ffffff;
+}
+
+.win-commandicon, .win-commandimage {
+    color: #fff;
+    border-color: #fff;
+}
+
+@media screen and (-ms-view-state: snapped) {
+    .daily section[role=main] {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .tile {
+        background-color: #fff;
+        display: block;
+        height: 50%;
+        margin: 5px;
+    }
+
+        .tile > .image {
+            height: 210px;
+            width: 260px;
+            background-image: url(../../images/drawing.svg);
+        }
+
+        .tile > .image2 {
+            height: 210px;
+            width: 260px;
+            background-image: url(../../images/drawing2.svg);
+        }
+
+        .tile h1 {
+            font-size: 4em;
+            text-align: center;
+            background-color: #0093DD;
+            width: 260px;
+        }
+
+            .tile h1 a {
+                color: #fff;
+            }
+}
+
+@media screen and (-ms-view-state: fullscreen-portrait) {
+    .daily section[role=main] {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+
+    .tile {
+        background-color: #fff;
+        display: block;
+        width: 80%;
+        height: 50%;
+        margin: 15px;
+    }
+
+        .tile > .image {
+            display: block;
+            width: 100%;
+            background-size: cover;
+            background-image: url(../../images/drawing.svg);
+        }
+
+        .tile > .image2 {
+            display: block;
+            width: 100%;
+            background-size: cover;
+            background-image: url(../../images/drawing2.svg);
+        }
+
+        .tile h1 {
+            font-size: 8em;
+            text-align: center;
+            background-color: #0093DD;
+            height: 30%;
+        }
+
+            .tile h1 a {
+                color: #fff;
+            }
+}

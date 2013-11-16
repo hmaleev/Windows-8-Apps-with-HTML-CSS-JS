@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="24234hmaleev.-" Version="1.1.0.0" Publisher="CN=4A66E1DD-C7BE-410B-9E1E-DF9D303F9993" />
+  <Properties>
+    <DisplayName>летище София - разписание</DisplayName>
+    <PublisherDisplayName>hmaleev</PublisherDisplayName>
+    <Logo>images\airportStoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" StartPage="default.html">
+      <VisualElements DisplayName="летище София - разписание" Logo="images/airportLogo.png" SmallLogo="images/airportSmallLogo.png" Description="Разписание на полетите на летище София." ForegroundText="light" BackgroundColor="#200C69" ToastCapable="false">
+        <DefaultTile ShowName="allLogos" ShortName="летище София" WideLogo="images/airportWideLogo.png" />
+        <SplashScreen Image="images\airportSplashScreen.png" />
+      </VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>
