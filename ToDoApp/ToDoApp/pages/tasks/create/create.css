@@ -1,0 +1,70 @@
+﻿.create section[role=main] {
+    margin-left: 120px;
+    margin-right: 120px;
+}
+
+table {
+    margin: 0 auto;
+    width: 40%;
+    font-size: 2em;
+}
+#title {
+    width: 99%;
+    font-size:1.1em;
+}
+#taskContent {
+    width: 95%;
+    font-size: 1.1em;
+}
+#create-task-button {
+    width: 100%;
+}
+
+@media screen and (-ms-view-state: snapped) {
+    .create section[role=main] {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+        table {
+        
+        font-size: 1.7em;
+    }
+    #title {
+       width:280px;
+       font-size:1.1em;
+    }
+    #content {
+        width:245px;
+        font-size: 1.1em;
+    }
+    #create-task-button {
+       width:280px;
+    }
+    .win-commandicon,.win-commandimage {
+        width:30px;
+    }
+    .win-datepicker,.win-timepicker {
+        display:block;
+        width: 160px;
+    }
+}
+
+@media screen and (-ms-view-state: fullscreen-portrait) {
+    .create section[role=main] {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+}
+
+@media (max-width: 2560px) {
+    body {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1366px) {
+    body {
+        font-size: 10px;
+    }
+}

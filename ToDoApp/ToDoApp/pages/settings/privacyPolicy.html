@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Privacy Policy</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.2.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
+
+    <link href="settings.css" rel="stylesheet" />
+    <script src="settings.js"></script>
+</head>
+<body>
+    <!-- BEGINSETTINGFLYOUT -->
+    <div data-win-control="WinJS.UI.SettingsFlyout" aria-label="Preferences" data-win-options="{settingsCommandId:'PrivacyPolicy',width:'narrow'}">
+        <!-- Use either 'win-ui-light' or 'win-ui-dark' depending on the contrast between the header title and background color -->
+        <div class="win-ui-dark win-header">
+            <!-- Background color reflects app's personality -->
+            <button type="button" onclick="WinJS.UI.SettingsFlyout.show()" class="win-backbutton"></button>
+            <div class="win-label">Preferences</div>
+        </div>
+        <div class="win-content ">
+            <div class="win-settings-section">
+                <!--<h3>Settings charm usage guidelines summary</h3>-->
+                <h3>Privacy Policy</h3>
+                <p style="font-size:1.6em">
+                    This application does not collect or store any personal information. It requires Internet connection to connect with server in order to register and login users. The application will send you an email in case of forgotten password. If you want to reset your password you will have to click on the link provided in the email.
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- ENDSETTINGSFLYOUT -->
+</body>
+</html>

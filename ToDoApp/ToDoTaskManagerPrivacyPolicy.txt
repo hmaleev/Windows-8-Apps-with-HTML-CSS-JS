@@ -1,0 +1,1 @@
+﻿ This application does not collect or store any personal information. It requires Internet connection to connect with server in order to register and login users. The application will send you an email in case of forgotten password. If you want to reset your password you will have to click on the link provided in the email.
