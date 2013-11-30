@@ -2,7 +2,9 @@
     margin-left: 120px;
     margin-right: 120px;
 }
-
+html,body {
+    width:100%;
+}
 
 #password-recovery-button {
    width:100%;
@@ -15,36 +17,9 @@
 table {
 
     margin: 0 auto;
-    width: 40%;
+    width: 90%;
     font-size: 2em;
 }
-
-@media screen and (-ms-view-state: snapped) {
-    .recovery section[role=main] {
-        margin-left: 20px;
-        margin-right: 20px;
-    }
-     table {
-        margin-left: 5%;
-        width: 90%;
-        font-size: 1.7em;
-    }
-   #pass, #user, #email, #confirmPass {
-        width: 99%;
-        font-size:1.1em;
-    }
-    .win-commandicon,.win-commandimage {
-        width:30px;
-    }
-}
-
-@media screen and (-ms-view-state: fullscreen-portrait) {
-    .recovery section[role=main] {
-        margin-left: 100px;
-        margin-right: 100px;
-    }
-}
-
 
 @media (max-width: 2560px) {
     body {

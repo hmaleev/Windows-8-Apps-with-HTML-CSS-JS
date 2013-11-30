@@ -51,6 +51,7 @@
     <PackageCertificateThumbprint>F2CC68BA3EF3C2024399DE5A3B12B0D153FA9664</PackageCertificateThumbprint>
     <PackageCertificateKeyFile>ToDoApp_StoreKey.pfx</PackageCertificateKeyFile>
     <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">

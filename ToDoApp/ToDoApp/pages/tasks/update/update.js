@@ -13,7 +13,7 @@
             appBar.disabled = true;
 
             var titleInput = document.getElementById("title");
-            var contentInput = document.getElementById("content");
+            var contentInput = document.getElementById("taskContent");
             var finishDateControl = document.getElementById("finishDate").winControl;
             var finishTimeControl = document.getElementById("finishHour").winControl;
 
@@ -23,9 +23,11 @@
             titleInput.value = data.title;
             contentInput.value = data.content;
 
-            finishDateControl.current = new Date(data.finishDate);
-            finishTimeControl.current = new Date(data.finishDate);
+            //finishDateControl.current = new Date(data.finishDate);
+            //finishTimeControl.current = new Date(data.finishDate);
 
+            finishDateControl.current = new Date();
+            finishTimeControl.current = new Date();
             var updateButton = document.getElementById("update-task-button");
             updateButton.addEventListener("click", function () {
                 UI.ChageBorderColor([titleInput, contentInput], Const.InputDefaultFieldColor);

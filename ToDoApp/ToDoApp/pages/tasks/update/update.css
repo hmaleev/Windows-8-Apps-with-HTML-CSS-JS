@@ -3,16 +3,69 @@
     margin-right: 120px;
 }
 
-@media screen and (-ms-view-state: snapped) {
+html, body {
+    width: 100%;
+}
+
+table {
+    margin: 0 auto;
+    font-size: 1.7em;
+}
+
+#title {
+    width: 99%;
+    font-weight:bold;
+    font-size:1.7em;
+}
+
+#taskContent {
+    width: 97%;
+    font-size: 1.5em;
+    height: 380px;
+}
+
+.cellTitle {
+    font-size: 1.5em;
+}
+
+#update-task-button {
+    width: 100%;
+    font-size: 1.5em;
+}
+
+
+@media (max-width: 2560px) {
+    body {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1366px) {
+    body {
+        font-size: 10px;
+    }
+}
+
+
+@media screen and (max-width: 700px) {
     .update section[role=main] {
         margin-left: 20px;
         margin-right: 20px;
     }
-}
 
-@media screen and (-ms-view-state: fullscreen-portrait) {
-    .update section[role=main] {
-        margin-left: 100px;
-        margin-right: 100px;
+    table {
+        max-width: 480px;
+        font-size: 1.7em;
+    }
+
+    #taskContent {
+        width: 95%;
+        font-size: 1.5em;
+        height:300px;
+    }
+
+    .win-datepicker, .win-timepicker {
+        display: inline-block;
+        width: 180px;
     }
 }
