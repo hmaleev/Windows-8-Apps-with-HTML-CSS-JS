@@ -14,17 +14,16 @@
 
         ready: function (element, options) {
             var appBar = document.getElementById("appbar").winControl;
-           
             appBar.disabled = false;
-            window.addEventListener("resize", function () {
-                var viewStates = Windows.UI.ViewManagement.ApplicationViewState;
-                var ViewState = Windows.UI.ViewManagement.ApplicationView.value;
-                if (ViewState === viewStates.snapped) {
-                    appBar.disabled = true;
-                } else {
-                    appBar.disabled = false;
-                }
-            });
+            //window.addEventListener("resize", function () {
+            //    var viewStates = Windows.UI.ViewManagement.ApplicationViewState;
+            //    var ViewState = Windows.UI.ViewManagement.ApplicationView.value;
+            //    if (ViewState === viewStates.snapped) {
+            //        appBar.disabled = true;
+            //    } else {
+            //        appBar.disabled = false;
+            //    }
+            //});
 
             if (DataPersister.userData.data == undefined || DataPersister.userData.data == '') {
                 appBar.show();
@@ -36,25 +35,29 @@
             lView.addEventListener("selectionchanged", this.selectionChanged);
             snappedListView.addEventListener("selectionchanged", this.selectionChanged);
 
-            var addButton = document.getElementById("add");
-            var editButton = document.getElementById("edit");
-            var saveButton = document.getElementById("save");
-            var uploadTasksButton = document.getElementById("sync");
-            var downloadTasksButton = document.getElementById("download");
-            var deleteButton = document.getElementById("delete").winControl;
-            var finishButton = document.getElementById("finish").winControl;
-            var logoutButton = document.getElementById("logout").winControl;
+            var Buttons = function () {
+                this.add = document.getElementById("add");
+                this.edit = document.getElementById("edit");
+                this.save = document.getElementById("save");
+                this.uploadTasks = document.getElementById("sync");
+                this.downloadTasks = document.getElementById("download");
+                this.delete = document.getElementById("delete");
+                this.finish = document.getElementById("finish");
+                this.logout = document.getElementById("logout");
+                this.calendar = document.getElementById("calendar");
+            }
+            var button = new Buttons();
 
             var selectedTasks = null;
             var localTasks = JSON.parse(localStorage.getItem(DataPersister.userData.username));
             var taskData = [];
             if (DataPersister.userData.username === "anonymous") {
-                uploadTasksButton.disabled = true;
-                downloadTasksButton.disabled = true;
+                button.uploadTasks.disabled = true;
+                button.downloadTasks.disabled = true;
             }
             else {
-                uploadTasksButton.disabled = false;
-                downloadTasksButton.disabled = false;
+                button.uploadTasks.disabled = false;
+                button.downloadTasks.disabled = false;
             }
 
             if (localTasks !== null) {
@@ -71,11 +74,11 @@
                 DataPersister.userData.data = null;
             }
 
-            addButton.addEventListener("click", function () {
+            button.add.addEventListener("click", function () {
                 WinJS.Navigation.navigate("pages/tasks/create/create.html");
             });
 
-            deleteButton.addEventListener("click", function () {
+            button.delete.addEventListener("click", function () {
                 if (lView.selection._listView !== null) {
                     selectedTasks = lView.selection.getIndices();
                 }
@@ -103,7 +106,7 @@
                 }
             });
 
-            editButton.addEventListener("click", function () {
+            button.edit.addEventListener("click", function () {
                 if (lView.selection._listView !== null) {
                     selectedTasks = lView.selection.getIndices();
                 }
@@ -125,7 +128,7 @@
                 }
             });
 
-            finishButton.addEventListener("click", function () {
+            button.finish.addEventListener("click", function () {
                 if (lView.selection._listView !== null) {
                     selectedTasks = lView.selection.getIndices();
                 }
@@ -145,7 +148,7 @@
                 selectedTasks = null;
             });
 
-            uploadTasksButton.addEventListener("click", function () {
+            button.uploadTasks.addEventListener("click", function () {
                 if (!DataPersister.userData.hasChanges) {
                     return;
                 }
@@ -157,7 +160,7 @@
 
                     progressBar.Hide();
                     if (DataPersister.userData.hasChanges) {
-                        YeahToast.show({ title: "Sync done" });
+                        YeahToast.show({ title: "Upload finished." });
                     }
                     DataPersister.userData.hasChanges = false;
 
@@ -167,7 +170,7 @@
                 });
             });
 
-            downloadTasksButton.addEventListener("click", function () {
+            button.downloadTasks.addEventListener("click", function () {
 
                 var userData = JSON.parse(localStorage.getItem("remember"));
                 if (userData == null) {
@@ -208,7 +211,7 @@
                 });
             });
 
-            logoutButton.addEventListener("click", function () {
+            button.logout.addEventListener("click", function () {
                 var progressBar = new UI.ProgressBar(document.body);
                 progressBar.Show();
 
@@ -224,7 +227,7 @@
                 });
             });
 
-            saveButton.addEventListener("click", function () {
+            button.save.addEventListener("click", function () {
 
                 var savePicker = new Windows.Storage.Pickers.FileSavePicker();
                 savePicker.suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.documentsLibrary;
@@ -254,16 +257,65 @@
 
                             Windows.Storage.CachedFileManager.completeUpdatesAsync(file).done(function (updateStatus) {
                                 if (updateStatus === Windows.Storage.Provider.FileUpdateStatus.complete) {
-                                    WinJS.log && WinJS.log("File " + file.name + " was saved.", "sample", "status");
+                                    YeahToast.show({ title: "File was saved successfully." });
                                 } else {
-                                    WinJS.log && WinJS.log("File " + file.name + " couldn't be saved.", "sample", "status");
+                                    YeahToast.show({ title: "File was not saved." });
                                 }
                             });
                         });
                     } else {
-                        WinJS.log && WinJS.log("Operation cancelled.", "sample", "status");
+                        YeahToast.show({ title: "Operation canceled." });
                     }
                 });
+            });
+
+            button.calendar.addEventListener("click", function () {
+                var appointment = new Windows.ApplicationModel.Appointments.Appointment();
+               
+                if (lView.selection._listView !== null) {
+                    selectedTasks = lView.selection.getIndices();
+                }
+                else if (snappedListView.selection._listView !== null) {
+                    selectedTasks = snappedListView.selection.getIndices();
+                }
+                else {
+                    return;
+                }
+                if (selectedTasks.length == 0) {
+                    Message.Show("No task selected");
+                    return;
+                }
+                var endDate = DataPersister.userData.data[selectedTasks[0]].finishDate.toString();
+                endDate = endDate.substr(0, 15)+" "+endDate.substr(17,2)+":"+endDate.substr(22,2);
+
+                //var duration = Date.parse(endDate)- Date.now();
+
+                if (selectedTasks !== null && selectedTasks.length == 1) {
+                    appointment.subject = DataPersister.userData.data[selectedTasks[0]].title;
+                    appointment.details = DataPersister.userData.data[selectedTasks[0]].content;
+                    appointment.duration = Date.parse(endDate) - Date.now();
+                    if (appointment.duration<0) {
+                        appointment.duration = 0;
+                    }
+                    
+                }
+                if (selectedTasks.length > 1) {
+                    Message.Show("You must select only one task");
+                    return;
+                }
+
+                // Get the selection rect of the button pressed to add this appointment 
+                var selectionRect = { x: 1000, y: 810, width: 200, height: 200 };
+
+                // ShowAddAppointmentAsync returns an appointment id if the appointment given was added to the user's calendar. 
+                // This value should be stored in app data and roamed so that the appointment can be replaced or removed in the future. 
+                // An empty string return value indicates that the user canceled the operation before the appointment was added. 
+                Windows.ApplicationModel.Appointments.AppointmentManager.showAddAppointmentAsync(appointment, selectionRect, Windows.UI.Popups.Placement.default)
+                    .done(function (appointmentId) {
+                        if (appointmentId) {
+                            YeahToast.show({title:"Appointment added"})
+                        }
+                    });
             });
         }
     });

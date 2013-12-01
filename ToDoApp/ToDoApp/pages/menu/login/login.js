@@ -9,17 +9,26 @@
     "use strict";
     WinJS.UI.Pages.define("/pages/menu/login/login.html", {
         ready: function (element, options) {
+
+            var Buttons = function () {
+                this.login = document.getElementById("login-button");
+                this.register = document.getElementById("create-account-button");
+                this.recovery = document.getElementById("password-recover-button");
+                this.gusetLoginButton = document.getElementById("login-guest-button");
+            }
+            var UserInput = function () {
+                this.userName = document.getElementById("user");
+                this.password = document.getElementById("pass");
+            }
+
+            var remmemberCheckBox = document.getElementById("remmember");
+            var userInput = new UserInput();
+            var buttons = new Buttons();
+
             var appBar = document.getElementById("appbar").winControl
             appBar.disabled = true;
-            var localStorage = window.localStorage;
-            var userInput = document.getElementById("user");
-            var passwordInput = document.getElementById("pass");
-            var remmemberCheckBox = document.getElementById("remmember");
-            var gusetLoginButton = document.getElementById("login-guest-button");
-            var loginButton = document.getElementById("login-button");
-            var registerButton = document.getElementById("create-account-button");
-            var recoveryButton = document.getElementById("password-recover-button");
 
+            var localStorage = window.localStorage;
             if (localStorage.getItem("remember") !== null) {
                 var loadingBar = new UI.ProgressBar(document.body);
                 loadingBar.Show();
@@ -34,7 +43,7 @@
                 });
             }
 
-            gusetLoginButton.addEventListener("click", function () {
+            buttons.gusetLoginButton.addEventListener("click", function () {
                 var loadingBar = new UI.ProgressBar(document.body);
                 loadingBar.Show();
                 Request.UserLogin("anonymous", "123456").then(function (request) {
@@ -60,7 +69,7 @@
                         respons = "";
                     }
                     if (respons == Request.ErrorMessages.UserNotExist) {
-                        UI.ChageBorderColor([userInput, passwordInput], Const.InputWrongFieldColor);
+                        UI.ChageBorderColor([userInput.userName, userInput.password], Const.InputWrongFieldColor);
                         Message.Show(Request.ErrorMessages.UserNotExist);
                     }
                     else {
@@ -71,15 +80,15 @@
                 });
             });
 
-            loginButton.addEventListener("click", function () {
+            buttons.login.addEventListener("click", function () {
                 var loadingBar = new UI.ProgressBar(document.body);
                 loadingBar.Show();
 
-                UI.ChageBorderColor([userInput, passwordInput], Const.InputDefaultFieldColor);
+                UI.ChageBorderColor([userInput.userName, userInput.password], Const.InputDefaultFieldColor);
                
                     var remmember = remmemberCheckBox.checked;
-                    var username = userInput.value;
-                    var password = passwordInput.value;
+                    var username = userInput.userName.value;
+                    var password = userInput.password.value;
                     var message = "";
                     if (remmember == true) {
                         var values = { username: username, password: password };
@@ -90,11 +99,11 @@
                     var userCheck = Check.Username(username);
                     if (userCheck != "") {
                         message += userCheck;
-                        wrongInputs.push(userInput);
+                        wrongInputs.push(userInput.userName);
                     }
                     var checkPassword = Check.Password(password);
                     if (checkPassword != "") {
-                        wrongInputs.push(passwordInput);
+                        wrongInputs.push(userInput.password);
                         message += checkPassword;
                     }
 
@@ -129,7 +138,7 @@
                         respons = "";
                     }
                     if (respons == Request.ErrorMessages.UserNotExist) {
-                        UI.ChageBorderColor([userInput, passwordInput], Const.InputWrongFieldColor);
+                        UI.ChageBorderColor([userInput.userName, userInput.password], Const.InputWrongFieldColor);
                         Message.Show(Request.ErrorMessages.UserNotExist);
                     }
                     else {
@@ -140,15 +149,15 @@
                 });
             });
 
-            registerButton.addEventListener("click", function () {
+            buttons.register.addEventListener("click", function () {
                 WinJS.Navigation.navigate("pages/menu/register/register.html");
             });
 
-            recoveryButton.addEventListener("click", function () {
+            buttons.recovery.addEventListener("click", function () {
                 WinJS.Navigation.navigate("pages/menu/recovery/recovery.html");
             });
 
-        },
+        }
 
     });
 })();
