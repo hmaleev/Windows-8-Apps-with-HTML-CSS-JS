@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="24234hmaleev.ToDoTaskManager" Version="1.2.0.1" Publisher="CN=4A66E1DD-C7BE-410B-9E1E-DF9D303F9993" />
+  <Identity Name="24234hmaleev.ToDoTaskManager" Version="1.2.1.2" Publisher="CN=4A66E1DD-C7BE-410B-9E1E-DF9D303F9993" />
   <Properties>
     <DisplayName>To Do Task Manager</DisplayName>
     <PublisherDisplayName>hmaleev</PublisherDisplayName>
@@ -31,6 +31,7 @@
           </m2:ShowNameOnTiles>
         </m2:DefaultTile>
         <m2:SplashScreen BackgroundColor="#00A9EC" Image="images\splashScreen100scale.png" />
+        <m2:ApplicationView MinWidth="width500" />
       </m2:VisualElements>
     </Application>
   </Applications>

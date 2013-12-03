@@ -23,9 +23,6 @@
             titleInput.value = data.title;
             contentInput.value = data.content;
 
-            //finishDateControl.current = new Date(data.finishDate);
-            //finishTimeControl.current = new Date(data.finishDate);
-
             finishDateControl.current = new Date();
             finishTimeControl.current = new Date();
             var updateButton = document.getElementById("update-task-button");

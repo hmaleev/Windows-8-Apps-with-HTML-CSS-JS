@@ -119,6 +119,7 @@ body, html {
     }
 
     #tasksSnapped {
+        display:block;
         opacity: 1;
     }
 
@@ -149,7 +150,7 @@ body, html {
         text-align: center;
         padding-right: 20px;
         max-height:100px;
-        max-width:325px;
+        max-width:465px;
     }
 
     .template #content {
@@ -159,7 +160,7 @@ body, html {
         text-align: center;
         padding-right: 20px;
         max-height:100px;
-        max-width:325px;
+        max-width:465px;
     }
       
     

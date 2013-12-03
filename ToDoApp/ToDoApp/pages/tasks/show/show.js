@@ -15,15 +15,8 @@
         ready: function (element, options) {
             var appBar = document.getElementById("appbar").winControl;
             appBar.disabled = false;
-            //window.addEventListener("resize", function () {
-            //    var viewStates = Windows.UI.ViewManagement.ApplicationViewState;
-            //    var ViewState = Windows.UI.ViewManagement.ApplicationView.value;
-            //    if (ViewState === viewStates.snapped) {
-            //        appBar.disabled = true;
-            //    } else {
-            //        appBar.disabled = false;
-            //    }
-            //});
+
+            var isSnapped = false;
 
             if (DataPersister.userData.data == undefined || DataPersister.userData.data == '') {
                 appBar.show();
@@ -79,10 +72,11 @@
             });
 
             button.delete.addEventListener("click", function () {
-                if (lView.selection._listView !== null) {
+                if (isSnapped === false) {
+
                     selectedTasks = lView.selection.getIndices();
                 }
-                else if (snappedListView.selection._listView !== null) {
+                else if (isSnapped === true) {
                     selectedTasks = snappedListView.selection.getIndices();
                 }
                 else {
@@ -107,10 +101,11 @@
             });
 
             button.edit.addEventListener("click", function () {
-                if (lView.selection._listView !== null) {
+                if (isSnapped === false) {
+
                     selectedTasks = lView.selection.getIndices();
                 }
-                else if (snappedListView.selection._listView !== null) {
+                else if (isSnapped === true) {
                     selectedTasks = snappedListView.selection.getIndices();
                 }
                 else {
@@ -129,10 +124,10 @@
             });
 
             button.finish.addEventListener("click", function () {
-                if (lView.selection._listView !== null) {
+                if (isSnapped === false) {
                     selectedTasks = lView.selection.getIndices();
                 }
-                else if (snappedListView.selection._listView !== null) {
+                else if (isSnapped === true) {
                     selectedTasks = snappedListView.selection.getIndices();
                 }
                 else {
@@ -272,10 +267,10 @@
             button.calendar.addEventListener("click", function () {
                 var appointment = new Windows.ApplicationModel.Appointments.Appointment();
                
-                if (lView.selection._listView !== null) {
+                if (isSnapped===false) {
                     selectedTasks = lView.selection.getIndices();
                 }
-                else if (snappedListView.selection._listView !== null) {
+                else if (isSnapped===true) {
                     selectedTasks = snappedListView.selection.getIndices();
                 }
                 else {
@@ -288,8 +283,6 @@
                 var endDate = DataPersister.userData.data[selectedTasks[0]].finishDate.toString();
                 endDate = endDate.substr(0, 15)+" "+endDate.substr(17,2)+":"+endDate.substr(22,2);
 
-                //var duration = Date.parse(endDate)- Date.now();
-
                 if (selectedTasks !== null && selectedTasks.length == 1) {
                     appointment.subject = DataPersister.userData.data[selectedTasks[0]].title;
                     appointment.details = DataPersister.userData.data[selectedTasks[0]].content;
@@ -297,7 +290,6 @@
                     if (appointment.duration<0) {
                         appointment.duration = 0;
                     }
-                    
                 }
                 if (selectedTasks.length > 1) {
                     Message.Show("You must select only one task");
@@ -305,7 +297,10 @@
                 }
 
                 // Get the selection rect of the button pressed to add this appointment 
-                var selectionRect = { x: 1000, y: 810, width: 200, height: 200 };
+                var width = window.innerWidth;
+                var height = window.innerHeight;
+                var selectionRect = { x: width-210, y: height-50, width: 200, height: 200 };
+                var body = document.getElementsByTagName("body");
 
                 // ShowAddAppointmentAsync returns an appointment id if the appointment given was added to the user's calendar. 
                 // This value should be stored in app data and roamed so that the appointment can be replaced or removed in the future. 
@@ -317,6 +312,16 @@
                         }
                     });
             });
+
+            window.addEventListener("resize", function () {
+                if (window.innerWidth<700) {
+                    isSnapped = true;
+                }
+                else {
+                    isSnapped = false;
+                }
+            });
+
         }
     });
 })();
