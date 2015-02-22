@@ -35,7 +35,7 @@
                 table.innerHTML = "<tbody></tbody>";
                 n.Show();
                 WinJS.xhr({
-                    url: "http://www.sofia-airport.bg/pages/departures.aspx",
+                    url: "http://213.91.213.82:8089/pages/departures.aspx",
                     type: "GET"
                 }).then(function (response) {
 
@@ -51,7 +51,7 @@
 
                     for (var i = currentPage; i < endPage; i++) {
                         WinJS.xhr({
-                            url: "http://www.sofia-airport.bg/pages/departures.aspx?lm01=103&lm02=51&lm03=51&p=" + i,
+                            url: "http://213.91.213.82:8089/pages/departures.aspx?lm01=103&lm02=51&lm03=51&p=" + i,
                             type: "GET",
                             headers: {
                                 "If-Modified-Since": date

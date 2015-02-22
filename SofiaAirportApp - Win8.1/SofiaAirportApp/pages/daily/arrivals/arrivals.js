@@ -37,7 +37,7 @@
                 var endPage;
 
                 WinJS.xhr({
-                    url: "http://www.sofia-airport.bg/pages/arrivals.aspx",
+                    url: "http://213.91.213.82:8089/pages/arrivals.aspx",
                     type: "GET"
                 }).then(function (response) {
 
@@ -54,7 +54,7 @@
                     for (var i = currentPage; i < endPage; i++) {
                         
                         WinJS.xhr({
-                            url: "http://www.sofia-airport.bg/pages/arrivals.aspx?lm01=103&lm02=51&lm03=51&p=" + i,
+                            url: "http://213.91.213.82:8089/pages/arrivals.aspx?lm01=103&lm02=51&lm03=51&p=" + i,
                             type: "GET",
                             headers: {
                                 "If-Modified-Since": date
